@@ -1,6 +1,11 @@
 const express=require('express')
 const router=express.Router();
-const {postCart}=require('../controllers/cartController')
+const {postCart, getCart}=require('../controllers/cartController')
 
-router.post('/carts',postCart);
+
+// POST route to add item
+router.post('/cart',postCart);
+
+// GET route to get all items
+router.get('/carts',getCart)
 module.exports=router;
