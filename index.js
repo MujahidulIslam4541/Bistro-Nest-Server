@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 const client=require('./config/db')
 const menuRoutes=require('./routes/menuRoutes')
 const reviewsRoute=require('./routes/reviewRoutes')
+const cartRoute=require('./routes/cartRoutes')
 
 // middleware
 app.use(cors());
@@ -33,6 +34,7 @@ run().catch(console.dir);
 // Routes
 app.use(menuRoutes)
 app.use(reviewsRoute)
+app.use(cartRoute)
 
 app.get("/", (req, res) => {
   res.send("bistroNest is running");
