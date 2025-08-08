@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const client = require("../config/db");
 const cartCollection = client.db("bistroNestDb").collection("carts");
 
@@ -16,3 +17,12 @@ exports.getCart = async (req, res) => {
   const result = await cartCollection.find(query).toArray();
   res.send(result);
 };
+
+// DELETE :delete one cart item
+
+exports.deleteCart=async(req,res)=>{
+  const id=req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const result=await cartCollection.deleteOne(query)
+  res.send(result)
+}
