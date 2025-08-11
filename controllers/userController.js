@@ -24,6 +24,17 @@ exports.getAllUsers = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const id = req.params.id;
   const query = { _id: new ObjectId(id) };
-  const result = await cartCollection.deleteOne(query);
+  const result = await userCollection.deleteOne(query);
+  res.send(result);
+};
+
+// Make Admin user
+exports.makeAdmin = async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const updateDoc = {
+    $set: { role: "admin" },
+  };
+  const result = await userCollection.updateOne(query, updateDoc);
   res.send(result);
 };
