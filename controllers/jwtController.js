@@ -10,7 +10,7 @@ exports.jwtPost = async (req, res) => {
 };
 
 exports.verifyToken = (req, res, next) => {
-  console.log(req.headers.authorization);
+//   console.log(req.headers.authorization);
   if (!req.headers.authorization) {
     return res.status(401).send({ message: "Forbidden Access" });
   }
@@ -20,9 +20,10 @@ exports.verifyToken = (req, res, next) => {
   }
   jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET, (error, decoded) => {
     if (error) {
-      return res.status(404).send({ message: "Unauthorized Access" });
+      return res.status(403).send({ message: "Unauthorized Access" });
     }
     req.decoded = decoded;
     next();
   });
 };
+

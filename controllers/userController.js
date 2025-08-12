@@ -38,3 +38,20 @@ exports.makeAdmin = async (req, res) => {
   const result = await userCollection.updateOne(query, updateDoc);
   res.send(result);
 };
+
+// verify admin
+exports.getAdmin = async (req, res) => {
+  const email = req.params.email;
+  if (email !== req.decoded.email) {
+    return res.status(403).send({ message: "unAuthorized Access" });
+  }
+  const query = { email: email };
+  const user = await userCollection.findOne(query);
+  let admin = false;
+  if (user) {
+    admin = user?.role === "admin";
+  }
+  res.send({ admin });
+};
+
+
