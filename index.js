@@ -8,6 +8,7 @@ const menuRoutes=require('./routes/menuRoutes')
 const reviewsRoute=require('./routes/reviewRoutes')
 const cartRoute=require('./routes/cartRoutes')
 const userRoute=require('./routes/userRoutes')
+const jwtRoute=require('./routes/jwtRoutes')
 
 // middleware
 app.use(cors());
@@ -37,6 +38,7 @@ app.use(userRoute)
 app.use(menuRoutes)
 app.use(reviewsRoute)
 app.use(cartRoute)
+app.use(jwtRoute)
 
 
 
